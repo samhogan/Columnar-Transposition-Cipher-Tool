@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+  <script type="text/javascript" src="DataTables/datatables.min.js"></script>
 </head>
 <body>
 
@@ -20,31 +23,28 @@
           <label for="keyword" class="mr-sm-2">Keyword:</label>
           <input type="text" class="form-control mb-2 mr-sm-2" id="keyword">
           <label for="padding" class="mr-sm-2">Padding:</label>
-          <input type="text" class="form-control mb-2 mr-sm-2" id="padding">
+          <input type="text" class="form-control mb-2 mr-sm-2" id="padding" maxlength="1" size="1">
           
         </form>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-6">
-        <form>
+        
             <div class="form-group">
-              <label for="exampleFormControlTextarea1"><h4>Plaintext</h4></label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+              <label for="plaintextArea"><h4>Plaintext</h4></label>
+              <textarea class="form-control" id="plaintextArea" rows="6"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Decipher</button>
-          </form>
+            <button type="button" class="btn btn-primary" id="encipherBtn">Encipher</button>
+            
     </div>
     <div class="col-sm-6">
-      <form>
           <div class="form-group">
-            <label for="exampleFormControlTextarea1"><h4>Ciphertext</h4></label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+            <label for="ciphertextArea"><h4>Ciphertext</h4></label>
+            <textarea class="form-control" id="ciphertextArea" rows="6"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Encipher</button>
+          <button type="button" class="btn btn-primary" id="decipherBtn">Decipher</button>
           <button type="button" class="btn btn-danger">Analyze</button>
-
-      </form>
     </div>
   </div>
   <div class="row">
@@ -52,18 +52,33 @@
 
   </div>
   <div class="row">
-    <div class="col-sm-4">
-      <h3>Column 2</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>Column 3</h3>        
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+    <div class="col-sm-12">
+      <table class="table table-hover" id="testTable">
+        
+        <tbody>
+          <tr>
+            <td>John</td>
+            <td>Doe</td>
+            <td>john@example.com</td>
+          </tr>
+          <tr>
+            <td>Mary</td>
+            <td>Moe</td>
+            <td>mary@example.com</td>
+          </tr>
+          <tr>
+            <td>July</td>
+            <td>Dooley</td>
+            <td>july@example.com</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
+
+<script src="columnar.js"></script>
+
 
 </body>
 </html>
