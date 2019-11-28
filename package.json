@@ -1,0 +1,30 @@
+{
+  "name": "columnartranspositiontool",
+  "version": "1.0.0",
+  "description": "Tool for creating and breaking columnar transposition ciphers",
+  "main": "index.js",
+  "scripts": {
+    "babel": "babel --presets @babel/preset-env index.js -o build/bundle.js",
+    "start": "http-server",
+    "webpack": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://samhogan@bitbucket.org/samhogan/columnar-transposition-website.git"
+  },
+  "author": "Sam Hogan",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/samhogan/columnar-transposition-website#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "http-server": "^0.12.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "table-dragger": "^1.0.3"
+  }
+}

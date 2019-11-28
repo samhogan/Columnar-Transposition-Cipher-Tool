@@ -1,4 +1,19 @@
 
+import tableDragger from 'table-dragger';
+//const tableDragger = require('table-dragger');
+//import watchify from 'watchify';
+
+var el = document.getElementById('testTable');
+var dragger = tableDragger(el, {
+  mode: 'row',
+  dragHandler: '*',
+  onlyBody: true,
+});
+dragger.on('drop',function(from, to){
+  console(from);
+  console(to);
+});
+
 
 var decipherBtn = document.getElementById("decipherBtn");
 var encipherBtn = document.getElementById("encipherBtn");
@@ -38,4 +53,5 @@ function encipher()
 
 decipherBtn.onclick = function(){decipher()};
 encipherBtn.onclick = function(){encipher()};
+
 
