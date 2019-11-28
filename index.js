@@ -60,10 +60,20 @@ function tableCreate(){
   var tbl  = document.createElement('table');
   tbl.className = 'display table';
 
+  //create the header
+  var header = tbl.createTHead();
+  var hrow = header.insertRow(0);    
+  for(var cols=0; cols<6; cols++)
+  {
+      var cell = document.createElement("th");
+      cell.innerHTML="s";
+      hrow.appendChild(cell);
+  }
 
+  var tbody = tbl.createTBody();
   for(var i = 0; i < 5; i++)
   {
-      var tr = tbl.insertRow();
+      var tr = tbody.insertRow();
       for(var j = 0; j < 6; j++)
       {
           var td = tr.insertCell();
