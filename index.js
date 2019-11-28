@@ -3,17 +3,17 @@ import tableDragger from 'table-dragger';
 //const tableDragger = require('table-dragger');
 //import watchify from 'watchify';
 
+/*
 var el = document.getElementById('testTable');
 var dragger = tableDragger(el, {
-  mode: 'row',
+  mode: 'column',
   dragHandler: '*',
-  onlyBody: true,
 });
 dragger.on('drop',function(from, to){
-  console(from);
-  console(to);
+  console.log(from);
+  console.log(to);
 });
-
+*/
 
 var decipherBtn = document.getElementById("decipherBtn");
 var encipherBtn = document.getElementById("encipherBtn");
@@ -55,3 +55,21 @@ decipherBtn.onclick = function(){decipher()};
 encipherBtn.onclick = function(){encipher()};
 
 
+function tableCreate(){
+  var body = document.getElementById('worksheet-col');
+  var tbl  = document.createElement('table');
+  tbl.className = 'display table';
+
+
+  for(var i = 0; i < 5; i++)
+  {
+      var tr = tbl.insertRow();
+      for(var j = 0; j < 6; j++)
+      {
+          var td = tr.insertCell();
+          td.appendChild(document.createTextNode('a'));
+      }
+  }
+  body.appendChild(tbl);
+}
+tableCreate();

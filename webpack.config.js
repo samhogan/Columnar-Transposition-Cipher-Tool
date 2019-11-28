@@ -7,6 +7,7 @@ var path = require('path');
          path: path.resolve(__dirname, 'build'),
          filename: 'bundle.js'
      },
+     watch:true,
      module: {
          rules: [
              {
