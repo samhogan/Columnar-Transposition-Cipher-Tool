@@ -4,5 +4,13 @@
 
 table {
     margin-top: 30px;
-    width: 100px
+    table-layout: fixed;
+    width: 180px;  
+    text-align: center;
+}
+
+#worksheet{
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
