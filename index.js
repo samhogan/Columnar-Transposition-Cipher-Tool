@@ -12,10 +12,13 @@ var ciphertextArea = document.getElementById("ciphertextArea");
 var keywordInput = document.getElementById('keyword');
 var paddingInput = document.getElementById('padding');
 
+
 var keyword = "";
 var padding = "";
 
 var textArray = [];
+
+var worksheetTable = null;
 
 
 //remove whitespace, numbers, and special characters
@@ -26,7 +29,8 @@ function cleanText(text)
 
 
 var keywordOrder = [];
-var keywordLocs = []
+var keywordLocs = [];
+var worksheetHeadings = [];
 function setUpKeyword()
 {
     keyword = cleanText(keywordInput.value);
@@ -49,6 +53,14 @@ function setUpKeyword()
     {
         keywordOrder[keywordLocs[i]] = i;
     }
+
+    //create the worksheet/visualization headings
+    worksheetHeadings = [];
+    for(var i=0; i<keyword.length; i++)
+    {
+        worksheetHeadings[i] = keyword.charAt(i) + "<br>(" + (keywordOrder[i]+1) + ")";
+    }
+
 
 
 }
@@ -110,6 +122,8 @@ function decipher()
 
 
     plaintextArea.value = plaintext;
+
+    createWorksheet();
 }
 
 
@@ -183,7 +197,7 @@ function encipher()
 
     ciphertextArea.value = cipherText.toUpperCase();
 
-
+    createWorksheet();
 
 }
 
@@ -197,8 +211,15 @@ encipherBtn.onclick = function(){encipher()};
 //builds the worksheet table and adds dragging functionality
 function createWorksheet()
 {
-    var tbl = tableCreate();
-    var dragger = tableDragger(tbl, {
+    //delete the old one
+    if(worksheetTable != null)
+    {
+        worksheetTable.parentNode.removeChild(worksheetTable);
+    }
+
+    worksheetTable = tableCreate(worksheetHeadings, textArray);
+    worksheetTable.style.width = Math.min(1200, keyword.length*40) + "px";
+    var dragger = tableDragger(worksheetTable, {
         mode: 'column',
         dragHandler: '*',
     });
@@ -208,4 +229,4 @@ function createWorksheet()
     });
 }
 
-createWorksheet();
+//createWorksheet();
