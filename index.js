@@ -287,4 +287,69 @@ function generateRectFromCols()
 }
 
 
-genRectBtn.onclick = function(){generateRectFromCols()};
+//genRectBtn.onclick = function(){generateRectFromCols()};
+
+
+function createSizeButton(rows, cols)
+{
+    // 1. Create the button
+    var button = document.createElement("button");
+    button.innerHTML = rows + "x" + cols;
+    button.className = "btn btn-light"
+    button.style.margin = "5px";
+
+    // 2. Append somewhere
+    var body = document.getElementById("sizeButtons");
+    body.appendChild(button);
+
+    // 3. Add event handler
+    button.addEventListener ("click", function() {
+        alert("did something");
+    });
+}
+
+//idk some magic that finds factors
+const factors = number => Array
+    .from(Array(number + 1), (_, i) => i)
+    .filter(i => number % i === 0);
+
+function findValidRectSizes()
+{
+    //remove previous buttons
+    var buttonHolder = document.getElementById("sizeButtons");
+    while(buttonHolder.firstChild) {
+        buttonHolder.removeChild(buttonHolder.firstChild);
+    }
+
+
+    var ciphertext = cleanText(ciphertextArea2.value);
+
+    var ctLength = ciphertext.length;
+
+    //find teh factors
+    var facts = factors(ctLength);
+
+    //sort based on most "square" rectangles
+    facts.sort(function(a,b){
+        return Math.abs(a - ctLength/a) - Math.abs(b - ctLength/b);
+    });
+
+    for(var i=0; i<facts.length; i++)
+    {
+        createSizeButton(facts[i],ctLength/facts[i]);
+    }
+
+    console.log(facts);
+
+
+}
+
+var lastCipherText = "";
+
+$("#ciphertextArea2").on("propertychange change keyup paste input", function(){
+    if(lastCipherText != ciphertextArea2.value)
+    {
+        findValidRectSizes();
+    }
+    lastCipherText = ciphertextArea2.value;
+});
