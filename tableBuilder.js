@@ -1,5 +1,5 @@
-export function tableCreate(headerData, data){
-    var body = document.getElementById('worksheet');
+export function tableCreate(headerData, data, divId){
+    var body = document.getElementById(divId);
     var tbl  = document.createElement('table');
     tbl.className = 'display table table-sm';
     tbl.id = 'worksheet';

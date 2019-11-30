@@ -41,7 +41,7 @@
               <label for="keyword" class="mr-sm-2">Keyword:</label>
               <input type="text" class="form-control mb-2 mr-sm-2" id="keyword">
               <label for="padding" class="mr-sm-2">Padding:</label>
-              <input type="text" class="form-control mb-2 mr-sm-2" id="padding" maxlength="1" size="1">
+              <input type="text" value="x" class="form-control mb-2 mr-sm-2" id="padding" maxlength="1" size="1">
 
             </form>
           </div>
@@ -87,7 +87,7 @@
             <div class="col-sm-12">
               <form class="form-inline" action="">
                 <label for="columns" class="mr-sm-2">Columns:</label>
-                <input type="number" class="form-control mb-2 mr-sm-2" id="columnsInput">
+                <input type="number" min="1" max="20" value="5" class="form-control mb-2 mr-sm-2" id="columnsInput">
               </form>
             </div>
           </div>
@@ -100,7 +100,7 @@
                   </label>
                   <textarea class="form-control" id="ciphertextArea2" rows="6"></textarea>
                 </div>
-                <button type="button" class="btn btn-success" id="analyzeBtn">Analyze</button>
+                <button type="button" class="btn btn-success" id="genRectBtn">Generate Rectangle</button>
                 <button type="button" class="btn btn-info" id="autosolveBtn">AutoSolve</button>
             </div>
 
@@ -112,13 +112,13 @@
                 </label>
                 <textarea class="form-control" id="resultArea" rows="6"></textarea>
               </div>
+              <p id="solveInfo">This is a test message</p> 
   
             </div>
             
           </div>
           <div class="row">
-  
-  
+             
           </div>
           <div class="row">
             <div class="col-sm-12">

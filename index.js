@@ -6,19 +6,28 @@ import { tableCreate } from './tableBuilder';
 
 var decipherBtn = document.getElementById("decipherBtn");
 var encipherBtn = document.getElementById("encipherBtn");
+var genRectBtn = document.getElementById("genRectBtn");
+var autoSolveBtn = document.getElementById("autoSolveBtn");
+
 var plaintextArea = document.getElementById("plaintextArea");
 var ciphertextArea = document.getElementById("ciphertextArea");
+var ciphertextArea2 = document.getElementById("ciphertextArea2");
+var resultArea = document.getElementById("resultArea");
 
 var keywordInput = document.getElementById('keyword');
 var paddingInput = document.getElementById('padding');
+var colsInput = document.getElementById('columnsInput');
 
 
 var keyword = "";
 var padding = "";
+var columnsValue = 0;
 
 var textArray = [];
+var textArray2 = [];//for the solve tab
 
 var worksheetTable = null;
+var worksheetTable2 = null;
 
 
 //remove whitespace, numbers, and special characters
@@ -75,6 +84,31 @@ function setUpPadding()
 }
 
 
+function fillArrayFromCiphertext(ciphertext, rows, cols)
+{
+    //the rectangle
+    var textArrayTemp = [];
+
+    //build the text array (the rectangle)
+    for(var c=0; c<cols; c++)
+    {
+        textArrayTemp.push([]);
+    }
+
+    var i=0;
+    for(var c=0; c<cols; c++)
+    {
+        for(var r=0; r<rows; r++)
+        {
+            textArrayTemp[c].push(ciphertext.charAt(i));
+            i++;
+        }
+    }
+
+    return textArrayTemp;
+}
+
+
 function decipher()
 {
     console.log("deciphering...");
@@ -87,24 +121,7 @@ function decipher()
     var cols = keyword.length;
     var rows = Math.ceil(ciphertext.length / cols);
 
-    //the rectangle
-    textArray = [];
-
-    //build the text array (the rectangle)
-    for(var c=0; c<cols; c++)
-    {
-        textArray.push([]);
-    }
-
-    var i=0;
-    for(var c=0; c<cols; c++)
-    {
-        for(var r=0; r<rows; r++)
-        {
-            textArray[c].push(ciphertext.charAt(i));
-            i++;
-        }
-    }
+    textArray = fillArrayFromCiphertext(ciphertext, rows, cols);
 
     //sort it to be in the order of the keyword
     textArray.sort(function(a, b){  
@@ -208,10 +225,7 @@ decipherBtn.onclick = function(){decipher()};
 encipherBtn.onclick = function(){encipher()};
 
 
-
-
-
-//builds the worksheet table and adds dragging functionality
+//table just for giving a visualization when enciphering/deciphering
 function createWorksheet()
 {
     //delete the old one
@@ -220,9 +234,34 @@ function createWorksheet()
         worksheetTable.parentNode.removeChild(worksheetTable);
     }
 
-    worksheetTable = tableCreate(worksheetHeadings, textArray);
+    worksheetTable = tableCreate(worksheetHeadings, textArray, 'worksheet');
     worksheetTable.style.width = Math.min(1200, keyword.length*40) + "px";
-    var dragger = tableDragger(worksheetTable, {
+}
+
+//createWorksheet();
+
+////Solve Features////
+
+
+//builds the worksheet table and adds dragging functionality
+function createWorksheet2()
+{
+    //delete the old one
+    if(worksheetTable2 != null)
+    {
+        worksheetTable2.parentNode.removeChild(worksheetTable2);
+    }
+
+    var emptyHeadings = [];
+    for(var i=0; i<columnsValue; i++)
+    {
+        emptyHeadings.push("?");
+    }
+
+
+    worksheetTable2 = tableCreate(emptyHeadings, textArray2, 'worksheet2');
+    worksheetTable2.style.width = Math.min(1200, columnsValue*40) + "px";
+    var dragger = tableDragger(worksheetTable2, {
         mode: 'column',
         dragHandler: '*',
     });
@@ -232,4 +271,20 @@ function createWorksheet()
     });
 }
 
-//createWorksheet();
+
+//generates the rect/worksheet to be dragged around, based on the number of cols
+function generateRectFromCols()
+{
+    console.log("generating worksheet...");
+
+    var ciphertext = cleanText(ciphertextArea2.value);
+    var cols = parseInt(colsInput.value, 10);
+    columnsValue = cols;
+    var rows = Math.ceil(ciphertext.length / cols);
+
+    textArray2 = fillArrayFromCiphertext(ciphertext, rows, cols);
+    createWorksheet2();
+}
+
+
+genRectBtn.onclick = function(){generateRectFromCols()};
