@@ -1,66 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Columnar Transposition</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="#">Columnar Transposition Tool (Full Rect)</a>
-</nav>
-  
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-        <form class="form-inline" action="">
-          <label for="keyword" class="mr-sm-2">Keyword:</label>
-          <input type="text" class="form-control mb-2 mr-sm-2" id="keyword">
-          <label for="padding" class="mr-sm-2">Padding:</label>
-          <input type="text" class="form-control mb-2 mr-sm-2" id="padding" maxlength="1" size="1">
-          
-        </form>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-        
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">Columnar Transposition Tool (Full Rect)</a>
+  </nav>
+
+  <div class="container">
+    
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="cipher-tab" data-toggle="tab" href="#cipher" role="tab" aria-controls="cipher"
+          aria-selected="true">Encipher/Decipher</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="analyze-tab" data-toggle="tab" href="#analyze" role="tab" aria-controls="analyze"
+          aria-selected="false">Solve</a>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="cipher" role="tabpanel" aria-labelledby="cipher-tab">
+      <br>
+        <div class="row">
+          <div class="col-sm-12">
+            <form class="form-inline" action="">
+              <label for="keyword" class="mr-sm-2">Keyword:</label>
+              <input type="text" class="form-control mb-2 mr-sm-2" id="keyword">
+              <label for="padding" class="mr-sm-2">Padding:</label>
+              <input type="text" class="form-control mb-2 mr-sm-2" id="padding" maxlength="1" size="1">
+
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+
             <div class="form-group">
-              <label for="plaintextArea"><h4>Plaintext</h4></label>
+              <label for="plaintextArea">
+                <h4>Plaintext</h4>
+              </label>
               <textarea class="form-control" id="plaintextArea" rows="6"></textarea>
             </div>
             <button type="button" class="btn btn-primary" id="encipherBtn">Encipher</button>
-            
-    </div>
-    <div class="col-sm-6">
-          <div class="form-group">
-            <label for="ciphertextArea"><h4>Ciphertext</h4></label>
-            <textarea class="form-control" id="ciphertextArea" rows="6"></textarea>
-          </div>
-          <button type="button" class="btn btn-primary" id="decipherBtn">Decipher</button>
-          <button type="button" class="btn btn-danger">Analyze</button>
-    </div>
-  </div>
-  <div class="row">
-    
 
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <div id="worksheet">
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="ciphertextArea">
+                <h4>Ciphertext</h4>
+              </label>
+              <textarea class="form-control" id="ciphertextArea" rows="6"></textarea>
+            </div>
+            <button type="button" class="btn btn-dark" id="decipherBtn">Decipher</button>
+          </div>
+        </div>
+        <div class="row">
+
+
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div id="worksheet">
+
+            </div>
+          </div>
+        </div>
 
       </div>
+      <div class="tab-pane fade" id="analyze" role="tabpanel" aria-labelledby="Analyze-tab">
+          <br>
+          <div class="row">
+            <div class="col-sm-12">
+              <form class="form-inline" action="">
+                <label for="columns" class="mr-sm-2">Columns:</label>
+                <input type="number" class="form-control mb-2 mr-sm-2" id="columnsInput">
+              </form>
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="ciphertextArea2">
+                    <h4>Ciphertext</h4>
+                  </label>
+                  <textarea class="form-control" id="ciphertextArea2" rows="6"></textarea>
+                </div>
+                <button type="button" class="btn btn-success" id="analyzeBtn">Analyze</button>
+                <button type="button" class="btn btn-info" id="autosolveBtn">AutoSolve</button>
+            </div>
+
+            <div class="col-sm-6">
+  
+              <div class="form-group">
+                <label for="resultArea">
+                  <h4>Result</h4>
+                </label>
+                <textarea class="form-control" id="resultArea" rows="6"></textarea>
+              </div>
+  
+            </div>
+            
+          </div>
+          <div class="row">
+  
+  
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div id="worksheet2">
+  
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
     </div>
   </div>
-</div>
-
-
-<script type="text/javascript" src="build/bundle.js"></script>
+  <script type="text/javascript" src="build/bundle.js"></script>
 
 </body>
+
 </html>

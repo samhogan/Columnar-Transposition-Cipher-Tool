@@ -65,9 +65,12 @@ function setUpKeyword()
 
 }
 
-function cleanPadding()
+function setUpPadding()
 {
-    padding = "x";
+    padding = cleanText(paddingInput.value);
+    if(padding == "")
+        padding = "x";
+    
     paddingInput.value = padding;
 }
 
@@ -78,7 +81,7 @@ function decipher()
     
     var ciphertext = cleanText(ciphertextArea.value);
     setUpKeyword();
-    cleanPadding();
+    setUpPadding();
 
     //determine number of rows and columns
     var cols = keyword.length;
@@ -134,7 +137,7 @@ function encipher()
     var plaintext = cleanText(plaintextArea.value);
     setUpKeyword();
     console.log(keywordOrder);
-    cleanPadding();
+    setUpPadding();
     
     //determine number of rows and columns
     var cols = keyword.length;
