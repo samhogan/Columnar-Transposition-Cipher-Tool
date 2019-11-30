@@ -273,12 +273,11 @@ function createWorksheet2()
 
 
 //generates the rect/worksheet to be dragged around, based on the number of cols
-function generateRectFromCols()
+function generateRectFromSize(cols)
 {
     console.log("generating worksheet...");
 
     var ciphertext = cleanText(ciphertextArea2.value);
-    var cols = parseInt(colsInput.value, 10);
     columnsValue = cols;
     var rows = Math.ceil(ciphertext.length / cols);
 
@@ -302,9 +301,10 @@ function createSizeButton(rows, cols)
     var body = document.getElementById("sizeButtons");
     body.appendChild(button);
 
+
     // 3. Add event handler
     button.addEventListener ("click", function() {
-        alert("did something");
+        generateRectFromSize(cols);
     });
 }
 
