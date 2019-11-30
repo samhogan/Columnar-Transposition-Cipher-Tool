@@ -1,6 +1,7 @@
 
 import tableDragger from 'table-dragger';
 import { tableCreate } from './tableBuilder';
+import { array_move } from './arrayMove';
 
 
 
@@ -16,7 +17,6 @@ var resultArea = document.getElementById("resultArea");
 
 var keywordInput = document.getElementById('keyword');
 var paddingInput = document.getElementById('padding');
-var colsInput = document.getElementById('columnsInput');
 
 
 var keyword = "";
@@ -108,6 +108,20 @@ function fillArrayFromCiphertext(ciphertext, rows, cols)
     return textArrayTemp;
 }
 
+function getPlainTextFromRect(rect)
+{
+    //build the plaintext
+    var plaintext = "";
+    for(var r=0; r<rect[0].length; r++)
+    {
+        for(var c=0; c<rect.length; c++)
+        {
+            plaintext += rect[c][r];
+        }
+    }
+
+    return plaintext;
+}
 
 function decipher()
 {
@@ -131,14 +145,7 @@ function decipher()
     console.log(textArray);
 
     //build the plaintext
-    var plaintext = "";
-    for(var r=0; r<rows; r++)
-    {
-        for(var c=0; c<cols; c++)
-        {
-            plaintext += textArray[c][r];
-        }
-    }
+    var plaintext = getPlainTextFromRect(textArray);
 
 
     plaintextArea.value = plaintext;
@@ -242,6 +249,11 @@ function createWorksheet()
 
 ////Solve Features////
 
+//displays the "plaintext" result of the current rectangle
+function displayResult()
+{
+
+}
 
 //builds the worksheet table and adds dragging functionality
 function createWorksheet2()
@@ -265,9 +277,12 @@ function createWorksheet2()
         mode: 'column',
         dragHandler: '*',
     });
+
+    //when elements reordered, update the result textbox
     dragger.on('drop',function(from, to){
-        console.log(from);
-        console.log(to);
+        array_move(textArray2, from, to);
+        resultArea.value = getPlainTextFromRect(textArray2);
+
     });
 }
 
