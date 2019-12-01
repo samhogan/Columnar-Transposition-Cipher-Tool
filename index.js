@@ -124,12 +124,13 @@ function getPlainTextFromRect(rect)
 }
 
 function decipher()
-{
-    console.log("deciphering...");
-    
+{   
     var ciphertext = cleanText(ciphertextArea.value);
     setUpKeyword();
     setUpPadding();
+
+    if(keyword == null || keyword.length == 0 || ciphertext == "")
+        return;
 
     //determine number of rows and columns
     var cols = keyword.length;
@@ -156,12 +157,12 @@ function decipher()
 
 function encipher()
 {
-    console.log("enciphering...");
-    
     var plaintext = cleanText(plaintextArea.value);
     setUpKeyword();
-    console.log(keywordOrder);
     setUpPadding();
+
+    if(keyword == null || keyword.length == 0 || plaintext == "")
+        return;
     
     //determine number of rows and columns
     var cols = keyword.length;
@@ -264,14 +265,14 @@ function createWorksheet2()
         worksheetTable2.parentNode.removeChild(worksheetTable2);
     }
 
-    var emptyHeadings = [];
+    var numHeadings = [];
     for(var i=0; i<columnsValue; i++)
     {
-        emptyHeadings.push("?");
+        numHeadings.push(""+(i+1));
     }
 
 
-    worksheetTable2 = tableCreate(emptyHeadings, textArray2, 'worksheet2');
+    worksheetTable2 = tableCreate(numHeadings, textArray2, 'worksheet2');
     worksheetTable2.style.width = Math.min(1200, columnsValue*40) + "px";
     var dragger = tableDragger(worksheetTable2, {
         mode: 'column',
@@ -283,6 +284,13 @@ function createWorksheet2()
         array_move(textArray2, from, to);
         resultArea.value = getPlainTextFromRect(textArray2);
 
+    });
+
+    dragger.on('drag',function(el,mode){
+        //worksheetTable2.style.width = "100%";
+        //worksheetTable2.parentNode.removeChild(worksheetTable2);
+        document.body.style.padding = "0px";
+        document.body.style.overflow = "auto";
     });
 }
 
@@ -298,6 +306,8 @@ function generateRectFromSize(cols)
 
     textArray2 = fillArrayFromCiphertext(ciphertext, rows, cols);
     createWorksheet2();
+    resultArea.value = getPlainTextFromRect(textArray2);
+
 }
 
 

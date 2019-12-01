@@ -2,7 +2,7 @@ export function tableCreate(headerData, data, divId){
     var body = document.getElementById(divId);
     var tbl  = document.createElement('table');
     tbl.className = 'display table table-sm';
-    tbl.id = 'worksheet';
+    tbl.id = divId+"tbl";
 
     //create the header
     var header = tbl.createTHead();
