@@ -67,7 +67,7 @@ function setUpKeyword()
     worksheetHeadings = [];
     for(var i=0; i<keyword.length; i++)
     {
-        worksheetHeadings[i] = keyword.charAt(i) + "<br>(" + (keywordOrder[i]+1) + ")";
+        worksheetHeadings[i] = keyword.charAt(i) + "<br>" + (keywordOrder[i]+1);
     }
 
 
@@ -123,14 +123,36 @@ function getPlainTextFromRect(rect)
     return plaintext;
 }
 
+function setAlert(message)
+{
+    document.getElementById("main-alert").innerHTML = message;
+    $(".alert").show();
+
+}
+
 function decipher()
 {   
+    $(".alert").hide();
+
     var ciphertext = cleanText(ciphertextArea.value);
     setUpKeyword();
     setUpPadding();
 
-    if(keyword == null || keyword.length == 0 || ciphertext == "")
+    if(keyword == null || keyword.length == 0)
+    {
+        setAlert("Enter a keyword!");
         return;
+    }
+    else if(ciphertext == "")
+    {
+        setAlert("Enter ciphertext");
+        return;
+    }
+    else if(ciphertext.length % keyword.length != 0)
+    {
+        setAlert("Ciphertext does not fill rectangle.");
+        return;
+    }
 
     //determine number of rows and columns
     var cols = keyword.length;
@@ -157,12 +179,23 @@ function decipher()
 
 function encipher()
 {
+    $(".alert").hide();
+
+
     var plaintext = cleanText(plaintextArea.value);
     setUpKeyword();
     setUpPadding();
 
-    if(keyword == null || keyword.length == 0 || plaintext == "")
+    if(keyword == null || keyword.length == 0)
+    {
+        setAlert("Enter a keyword!");
         return;
+    }
+    else if(plaintext == "")
+    {
+        setAlert("Enter plaintext");
+        return;
+    }
     
     //determine number of rows and columns
     var cols = keyword.length;
@@ -378,3 +411,6 @@ $("#ciphertextArea2").on("propertychange change keyup paste input", function(){
     }
     lastCipherText = ciphertextArea2.value;
 });
+
+//hide the alert
+$(".alert").hide();
