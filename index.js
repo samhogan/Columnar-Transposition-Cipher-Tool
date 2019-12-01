@@ -77,7 +77,7 @@ function setUpKeyword()
 function setUpPadding()
 {
     padding = cleanText(paddingInput.value);
-    if(padding == "")
+    if(padding == "" || padding.length > 1)
         padding = "x";
     
     paddingInput.value = padding;

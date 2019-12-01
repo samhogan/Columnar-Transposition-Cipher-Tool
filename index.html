@@ -2,9 +2,21 @@
 <html lang="en">
 
 <head>
-  <title>Columnar Transposition</title>
+  <title>Columnar Transposition Cipher Tool</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tool for enciphering, deciphering, and cryptanalyzing full rectangle columnar transposition ciphers">
+  <meta name="keywords" content="columnar,transposition,cipher,tool,encrypt,decrypt,encipher,decipher,analyze,solve,cryptanalyze,full,rectangle,cryptology">
+  <meta name="author" content="Sam Hogan">
+  <link rel="apple-touch-icon" sizes="180x180" href="/ctc_tool/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/ctc_tool/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/ctc_tool/favicon-16x16.png">
+  <link rel="manifest" href="/ctc_tool/site.webmanifest">
+  <link rel="shortcut icon" href="/ctc_tool/favicon.ico">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-config" content="/ctc_tool/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -55,7 +67,7 @@
               <label for="plaintextArea">
                 <h4>Plaintext</h4>
               </label>
-              <textarea class="form-control" id="plaintextArea" rows="6"></textarea>
+              <textarea class="form-control" id="plaintextArea" rows="6" spellcheck="false"></textarea>
             </div>
             <button type="button" class="btn btn-primary" id="encipherBtn">Encipher</button>
 
@@ -65,7 +77,7 @@
               <label for="ciphertextArea">
                 <h4>Ciphertext</h4>
               </label>
-              <textarea class="form-control" id="ciphertextArea" rows="6"></textarea>
+              <textarea class="form-control" id="ciphertextArea" rows="6" spellcheck="false"></textarea>
             </div>
             <button type="button" class="btn btn-dark" id="decipherBtn">Decipher</button>
           </div>
@@ -84,8 +96,8 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <div class="alert alert-warning" id="main-alert" role="alert" style="margin-top:20px">
-                    No keyword entered!
+                <div class="alert alert-warning" id="main-alert" role="alert" style="margin-top:20px; display: none;">
+                    
                   </div>
             </div>
         </div>
@@ -103,7 +115,7 @@
                   <label for="ciphertextArea2">
                     <h4>Ciphertext</h4>
                   </label>
-                  <textarea class="form-control" id="ciphertextArea2" rows="6"></textarea>
+                  <textarea class="form-control" id="ciphertextArea2" rows="6" spellcheck="false"></textarea>
                 </div>
                 <div id="sizeButtons"></div>
             </div>
@@ -114,7 +126,7 @@
                 <label for="resultArea">
                   <h4>Result</h4>
                 </label>
-                <textarea class="form-control" id="resultArea" rows="6"></textarea>
+                <textarea class="form-control" id="resultArea" rows="6" spellcheck="false"></textarea>
               </div>
   
             </div>
@@ -136,7 +148,7 @@
   </div>
   <footer class="footer">
       <div class="container">
-        <span class="text-muted">Made by Sam Hogan for CSC483 <a href="">view source</a></span>
+        <span class="text-muted">Made by Sam Hogan for CSC483 <a href="https://github.com/samhogan/Columnar-Transposition-Cipher-Tool">view source</a></span>
       </div>
     </footer>
   <script type="text/javascript" src="build/bundle.js"></script>
