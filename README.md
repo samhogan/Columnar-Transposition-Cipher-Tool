@@ -9,3 +9,6 @@ First enter a keyword and the desired padding character. Then enter plaintext in
 ## Solve Tab
 
 Enter ciphertext in the "Ciphertext" box, select a rectangle size, drag around the columns to figure out the plaintext.
+
+## Try it
+[View Site](http://samh.xyz/ctc_tool/)
