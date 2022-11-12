@@ -22,7 +22,7 @@
     "babel-loader": "^8.0.6",
     "http-server": "^0.12.0",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "table-dragger": "^1.0.3"
